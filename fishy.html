@@ -3,5 +3,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <img id="fish" src="images/fishy.jpg">
+    <img id="fish" src="images/fishy.png">
+    <script>
+        let fishEl = document.querySelector("#fish")
+        let fishLeft = document.body.clientWidth
+        console.log(fishLeft)
+        result = fishEl
+        console.log(result)
+        function moveFish(){
+        fishEl.style.left = fishLeft + "px"
+        fishLeft -= 1
+        setTimeout(moveFish, 17)
+        }
+        moveFish()
+    </script>
 </body>

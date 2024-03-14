@@ -24,5 +24,7 @@ link {
 #fish {
     height: auto;
     width: 40%;
-    float: right;
+    position: fixed;
+    top: right;
+    
 }
