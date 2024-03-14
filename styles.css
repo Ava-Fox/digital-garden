@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(231, 153, 166);
+    background-image: url("images/fractalTree.png");
+    background-position: right;
+    background-size: 40% auto contain;
+    background-repeat: no-repeat;
+    font-family: fantasy;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h1 {
+    color:rgb(39, 22, 25);
+}
+
+#fractaltree {
+    height: auto;
+    width: 40%;
+    float: right;
+}
