@@ -6,15 +6,22 @@ body {
     background-repeat: no-repeat;
     font-family: fantasy;
     text-align: center;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.4;
+    color: rgb(66, 50, 50);
+    font-size: 18px;
+    padding: 0 10px;
 }
 
 h1 {
     color:rgb(39, 22, 25);
+    line-height: 1.2;
 }
-
-#fractaltree {
+link {
+    color:rgb(39, 22, 25);
+}
+#fish {
     height: auto;
     width: 40%;
     float: right;
