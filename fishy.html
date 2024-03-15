@@ -6,12 +6,12 @@
     <img id="fish" src="images/fishy.png">
     <script>
         let fishEl = document.querySelector("#fish")
-        let fishLeft = document.body.clientWidth + 300
+        let fishLeft = document.body.clientWidth + 800
         function moveFish(){
         fishEl.style.left = fishLeft + "px"
         fishLeft -= 1
         if (fishLeft < -500) {
-            fishLeft = document.body.clientWidth + 300
+            fishLeft = document.body.clientWidth + 800
         }
         setTimeout(moveFish, 17)
         }
@@ -19,7 +19,8 @@
     </script>
     <div id="pagecontainer">
         <p id="fishdescription">
-            Check out my lil fishy move! I'm so proud 🥲 (Thanks Reed!)
+            Check out my lil fishy move! <a href="whatever.html">I'm so proud</a> 🥲 
         </p>
     </div>
+    <!-- <img id="seaweed" src="images/seaweed.gif"> -->
 </body>

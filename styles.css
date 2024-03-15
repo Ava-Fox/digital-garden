@@ -16,13 +16,28 @@ body {
     padding: 0 10px;
 }
 
+#whatever {
+    background-image: url("images/Gnarly.png");
+    height: 100vh;
+    width: 100vh;
+    background-size: 50%;
+}
+
+#paragraph {
+    text-align: left;
+}
+
 h1 {
     color:rgb(39, 22, 25);
     line-height: 1.2;
 }
 
-link {
-    color:rgb(39, 22, 25);
+a {
+    color: #A569BD;
+}
+
+a:hover {
+    color: #000000;
 }
 
 #fish {
@@ -31,7 +46,12 @@ link {
     top: right;
     position: fixed;
 }
-
+#seaweed {
+    top: 1;
+    position: fixed;
+    height: auto;
+    width: 25%;
+}
 #pagecontainer {
     height: 100%;
     display: flex;
