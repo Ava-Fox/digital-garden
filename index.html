@@ -43,7 +43,17 @@
         hash += "#"
     }
     // Chessboard
-    let space = " "
-    let hash = "#"
+    let size = 30;
+    let str = "";
+    let newChar = " ";
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            str += newChar;
+            if (newChar == " " ? newChar = "#" : newChar = " ");
+        }
+        if (newChar == " " ? newChar = "#" : newChar = " ");
+        str += "\n";
+    }
+    console.log(str);
 </script>
 </html>
