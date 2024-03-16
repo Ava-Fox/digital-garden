@@ -21,10 +21,15 @@ body {
     height: 100vh;
     width: 100vh;
     background-size: 50%;
+    background-repeat: repeat-x;
+    background-attachment: fixed;
 }
 
 #paragraph {
     text-align: left;
+    background-color: beige;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 h1 {

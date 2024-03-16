@@ -5,16 +5,45 @@
 </head>
 <body>
     <h1> Hello this is my digital garden </h1>
-    <p> It's nice to meet you, <a href="./fishy.html">traveler</a></p>
+    <p> It's nice to meet you, <a href="/fishy.html">traveler</a></p>
     <!-- <p>Pressgang to go on account walk the plank Spanish Main square-rigged bilge rat hardtack stern hogshead grapple. Execution dock square-rigged strike colors haul wind rigging lookout coffer flogging ye hang the jib. Rope's end Gold Road keelhaul Jack Tar measured fer yer chains lugsail yard Barbary Coast gaff bilge rat.</p>
     <p>Jury mast furl swing the lead rum flogging yo-ho-ho matey American Main lugger pirate. Maroon lugsail keel mizzen scallywag overhaul booty ye black spot gunwalls. Gally hempen halter fluke Privateer tender salmagundi scourge of the seven seas bilge rat topsail pirate.</p>
     <p>Six pounders snow yo-ho-ho rutters lad lanyard galleon ahoy mizzenmast mutiny. Flogging Sail ho ho code of conduct nipper gangplank barkadeer topmast spyglass yo-ho-ho. To go on account chase guns Letter of Marque loaded to the gunwalls parley yawl code of conduct salmagundi pillage list.</p> -->
 </body>
 <script>
-    let one = 1
-    let two = 2
-    console.log(true ? typeof one : two)
     console.log("hello, world!")
-    console.log(`hello \n${typeof "5" + 5}`)
+    // FizzBuzz
+    for (let i = 0; i <= 100; i++) {
+        divThree = (i % 3 == 0);
+        divFive = (i % 5 == 0);
+        if (divThree && divFive) {
+            console.log("Fizzbuzz")
+        }
+        else if (divThree) {
+            console.log("Fizz")
+        }
+        else if (divFive) {
+            console.log("Buzz")
+        }
+        else {
+            console.log(i)
+        }
+    }
+    /*
+    #
+    ##
+    ###
+    ####
+    #####
+    ######
+    */
+    hash = "#"
+    for (let i = 0; i < 7; i++) {
+        console.log(hash)
+        hash += "#"
+    }
+    // Chessboard
+    let space = " "
+    let hash = "#"
 </script>
 </html>
