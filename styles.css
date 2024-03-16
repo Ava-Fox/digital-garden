@@ -20,7 +20,7 @@ body {
     background-image: url("images/Gnarly.png");
     height: 100vh;
     width: 100vh;
-    background-size: 50%;
+    background-size: contain;
     background-repeat: repeat-x;
     -webkit-box-reflect: left 20px;
     background-attachment: fixed;
@@ -31,6 +31,7 @@ body {
     background-color: beige;
     border-radius: 25px;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 h1 {
