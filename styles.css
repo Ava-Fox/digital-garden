@@ -81,3 +81,23 @@ a:hover {
  left: 0;
  top: 0;
 }
+
+.paddle {
+    width: 50px;
+    height: 100px;
+    background-color: blue;
+}
+
+.paddleLeft {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-left: 20px;
+}
+
+.paddleRight {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-right: 20px;
+}
