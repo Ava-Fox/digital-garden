@@ -75,3 +75,9 @@ a:hover {
     height: fit-content;
     padding: 10px;
 }
+
+.follow {
+ position: fixed;
+ left: 0;
+ top: 0;
+}

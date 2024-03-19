@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <title> Ava's Digital Garden </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="follow">✨</div>
+<script>
+    function getMousePosition(event) {
+        let mousePosX = event.clientX;
+        let mousePosY = event.clientY;
+        let sparkleEl = document.querySelector(".follow");
+        sparkleEl.style.top = `${mousePosY}px`;
+        sparkleEl.style.left = `${mousePosX}px`;
+    }
+    document.addEventListener("mousemove", getMousePosition);
+</script>
