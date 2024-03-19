@@ -75,7 +75,9 @@ a:hover {
     height: fit-content;
     padding: 10px;
 }
-
+#pong {
+    background-image: url("images/coolBkgnd.png")
+}
 .follow {
  position: fixed;
  left: 0;
@@ -84,8 +86,9 @@ a:hover {
 
 .paddle {
     width: 50px;
-    height: 100px;
-    background-color: blue;
+    height: 200px;
+    background-color: pink;
+    border: 5px solid black;
 }
 
 .paddleLeft {

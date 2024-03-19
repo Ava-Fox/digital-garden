@@ -4,6 +4,7 @@ document.addEventListener("mousemove", getMousePosition);
 let mousePosition = 0;
 let downPressed = false;
 let upPressed = false;
+let speed = 2;
 
 function getMousePosition(event) {
     mousePosition = event.clientY;
@@ -47,11 +48,14 @@ function movePaddle() {
     
     // moving down
     if (centerPlayerOne < mousePosition) {
-        playerOne.style.top = `${topOne + 1}px`;
+        playerOne.style.top = `${topOne + speed}px`;
     }
     // moving up
     else if (centerPlayerOne > mousePosition  && topOne >= 0) {
-        playerOne.style.top = `${topOne - 1}px`;
+        playerOne.style.top = `${topOne - speed}px`;
+    }
+    else {
+        
     }
 
     // move player 2
@@ -61,11 +65,11 @@ function movePaddle() {
     let centerPlayerTwo = getCenter(topTwo, heightTwo);
     console.log(centerPlayerTwo);
 
-    if (downPressed && bottomTwo <= window.innerHeight) {
-        playerTwo.style.top = `${topTwo + 1}px`;
+    if (downPressed && bottomTwo <= (window.innerHeight - 20)) {
+        playerTwo.style.top = `${topTwo + speed}px`;
     }
-    if (upPressed && topTwo >= 0) {
-        playerTwo.style.top = `${topTwo - 1}px`;
+    if (upPressed && topTwo >= 20) {
+        playerTwo.style.top = `${topTwo - speed}px`;
     }
     
     setTimeout(movePaddle, 17)
