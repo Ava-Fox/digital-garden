@@ -104,3 +104,11 @@ a:hover {
     top: 0;
     margin-right: 20px;
 }
+
+#ball {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 50px;
+    width: auto;
+}

@@ -1,9 +1,8 @@
-console.log("hello world");
-
 document.addEventListener("mousemove", getMousePosition);
 let mousePosition = 0;
 let downPressed = false;
 let upPressed = false;
+let isStill = true;
 let speed = 2;
 
 function getMousePosition(event) {
@@ -30,32 +29,59 @@ function onKeyUp(event) {
 
 document.addEventListener("keydown", onKeyDown);
 document.addEventListener("keyup", onKeyUp);
+let movingDown = true;
+let movingUp = false;
+function moveBall() {
+    let ball = document.getElementById("ball");
+    let ballPos = ball.getBoundingClientRect();
+    let topBall = ballPos.top;
+    let bottomBall = ballPos.bottom;
+    
+    // move down
+    
+    if (movingDown) {
+        if (bottomBall <= window.innerHeight) {
+            ball.style.top = `${topBall + speed}px`
+        }
+        else {
+            movingDown = false;
+            movingUp = true;
+        }
+    }
+    else if (movingUp) {
+        if (topBall >= 0) {
+            ball.style.top = `${topBall - speed}px`
+        }
+        else {
+            movingUp = false;
+            movingDown = true;
+        }
+    }
+    setTimeout(moveBall, 17);
+}
+moveBall();
 
 function movePaddle() {
     let playerOne = document.querySelector(".paddleLeft");
     let playerTwo = document.querySelector(".paddleRight");
-    // bunch of logic
-    // if paddle Left above, move down
 
     // getting position logic
     let paddlePositionOne = playerOne.getBoundingClientRect();
     let paddlePositionTwo = playerTwo.getBoundingClientRect();
     let topOne = paddlePositionOne.top;
+    let bottomOne = paddlePositionOne.bottom;
     let heightOne = paddlePositionOne.height;
     
     // moving logic
     let centerPlayerOne = getCenter(topOne, heightOne);
     
     // moving down
-    if (centerPlayerOne < mousePosition) {
+    if (centerPlayerOne < mousePosition && bottomOne <= (window.innerHeight - 20)) {
         playerOne.style.top = `${topOne + speed}px`;
     }
     // moving up
-    else if (centerPlayerOne > mousePosition  && topOne >= 0) {
+    else if (centerPlayerOne > mousePosition  && topOne >= 20) {
         playerOne.style.top = `${topOne - speed}px`;
-    }
-    else {
-        
     }
 
     // move player 2
@@ -63,7 +89,6 @@ function movePaddle() {
     let bottomTwo = paddlePositionTwo.bottom;
     let heightTwo = paddlePositionTwo.height;
     let centerPlayerTwo = getCenter(topTwo, heightTwo);
-    console.log(centerPlayerTwo);
 
     if (downPressed && bottomTwo <= (window.innerHeight - 20)) {
         playerTwo.style.top = `${topTwo + speed}px`;
