@@ -31,14 +31,44 @@ document.addEventListener("keydown", onKeyDown);
 document.addEventListener("keyup", onKeyUp);
 let movingDown = true;
 let movingUp = false;
+let moveLeft  = true;
+let moveRight = false;
+function game() {
+    let ballPos = moveBall();
+    let paddlePosition = movePaddle();
+    checkCollision(ballPos, paddlePosition);
+    setTimeout(game, 17);
+}
+game()
+
+function checkCollision(ballPos, paddlePosition) {
+    let paddlePositionOne = paddlePosition[0];
+    let paddlePositionTwo = paddlePosition[1];
+    let leftPaddle = paddlePositionOne.right;
+    let rightPaddle = paddlePositionTwo.left;
+    let leftBall = ballPos.left;
+    let rightBall = ballPos.right;
+
+    // hit left paddle
+    if (leftBall <= leftPaddle) {
+        moveLeft = false;
+        moveRight = true;
+    }
+    if (rightBall >= rightPaddle) {
+        moveLeft = true;
+        moveRight = false;
+    }
+
+}
 function moveBall() {
     let ball = document.getElementById("ball");
     let ballPos = ball.getBoundingClientRect();
     let topBall = ballPos.top;
     let bottomBall = ballPos.bottom;
+    let leftBall = ballPos.left;
+    let rightBall = ballPos.right;
     
     // move down
-    
     if (movingDown) {
         if (bottomBall <= window.innerHeight) {
             ball.style.top = `${topBall + speed}px`
@@ -57,9 +87,26 @@ function moveBall() {
             movingDown = true;
         }
     }
-    setTimeout(moveBall, 17);
+    if (moveLeft) {
+        if (leftBall >= 0) {
+            ball.style.left = `${leftBall - speed}px`
+        }
+        else {
+            moveLeft = false;
+            moveRight = true;
+        }
+    }
+    else if (moveRight) {
+        if (rightBall <= window.innerWidth) {
+            ball.style.left = `${leftBall + speed}px`
+        }
+        else {
+            moveRight = false;
+            moveLeft = true;
+        }
+    }
+    return ballPos;
 }
-moveBall();
 
 function movePaddle() {
     let playerOne = document.querySelector(".paddleLeft");
@@ -96,10 +143,8 @@ function movePaddle() {
     if (upPressed && topTwo >= 20) {
         playerTwo.style.top = `${topTwo - speed}px`;
     }
-    
-    setTimeout(movePaddle, 17)
+    return [paddlePositionOne, paddlePositionTwo];
 }
-movePaddle()
 
 function getCenter (top, height) {
     let center = top + (height / 2);

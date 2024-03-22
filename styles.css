@@ -107,7 +107,7 @@ a:hover {
 
 #ball {
     position: fixed;
-    right: 0;
+    right: 60;
     top: 0;
     height: 50px;
     width: auto;
