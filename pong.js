@@ -3,7 +3,8 @@ let mousePosition = 0;
 let downPressed = false;
 let upPressed = false;
 let isStill = true;
-let speed = 2;
+let ballSpeed = 2;
+let paddleSpeed = 4;
 
 function getMousePosition(event) {
     mousePosition = event.clientY;
@@ -42,24 +43,37 @@ function game() {
 game()
 
 function checkCollision(ballPos, paddlePosition) {
+    // distance bt rect top to top of screen and distance bt rect bottom to bottom of screen = whitespace/empty
+    // collision if it's not in that whitespace
     let paddlePositionOne = paddlePosition[0];
     let paddlePositionTwo = paddlePosition[1];
+    
     let leftPaddle = paddlePositionOne.right;
     let rightPaddle = paddlePositionTwo.left;
     let leftBall = ballPos.left;
     let rightBall = ballPos.right;
+    let whiteSpaceOne = (ballPos.bottom < paddlePositionOne.top || ballPos.top > paddlePositionOne.bottom)
+    let whiteSpaceTwo = ballPos.bottom < paddlePositionTwo.top || ballPos.top > paddlePositionTwo.bottom
 
-    // hit left paddle
+    // Check Player One
     if (leftBall <= leftPaddle) {
-        moveLeft = false;
-        moveRight = true;
-    }
-    if (rightBall >= rightPaddle) {
-        moveLeft = true;
-        moveRight = false;
+        if (!whiteSpaceOne) {
+            moveLeft = false;
+            moveRight = true;
+            console.log("Hit Left Paddle");
+        }
     }
 
+    // Check Player Two
+    if (rightBall >= rightPaddle) {
+        if (!whiteSpaceTwo) {
+            moveLeft = true;
+            moveRight = false;
+            console.log("Hit Right Paddle");
+        }
+    }
 }
+
 function moveBall() {
     let ball = document.getElementById("ball");
     let ballPos = ball.getBoundingClientRect();
@@ -71,7 +85,7 @@ function moveBall() {
     // move down
     if (movingDown) {
         if (bottomBall <= window.innerHeight) {
-            ball.style.top = `${topBall + speed}px`
+            ball.style.top = `${topBall + ballSpeed}px`
         }
         else {
             movingDown = false;
@@ -80,7 +94,7 @@ function moveBall() {
     }
     else if (movingUp) {
         if (topBall >= 0) {
-            ball.style.top = `${topBall - speed}px`
+            ball.style.top = `${topBall - ballSpeed}px`
         }
         else {
             movingUp = false;
@@ -89,7 +103,7 @@ function moveBall() {
     }
     if (moveLeft) {
         if (leftBall >= 0) {
-            ball.style.left = `${leftBall - speed}px`
+            ball.style.left = `${leftBall - ballSpeed}px`
         }
         else {
             moveLeft = false;
@@ -98,7 +112,7 @@ function moveBall() {
     }
     else if (moveRight) {
         if (rightBall <= window.innerWidth) {
-            ball.style.left = `${leftBall + speed}px`
+            ball.style.left = `${leftBall + ballSpeed}px`
         }
         else {
             moveRight = false;
@@ -107,42 +121,41 @@ function moveBall() {
     }
     return ballPos;
 }
-
-function movePaddle() {
-    let playerOne = document.querySelector(".paddleLeft");
-    let playerTwo = document.querySelector(".paddleRight");
-
-    // getting position logic
+function movePaddleLeft(playerOne) {
+    // moves by mouse
     let paddlePositionOne = playerOne.getBoundingClientRect();
-    let paddlePositionTwo = playerTwo.getBoundingClientRect();
     let topOne = paddlePositionOne.top;
     let bottomOne = paddlePositionOne.bottom;
     let heightOne = paddlePositionOne.height;
-    
-    // moving logic
     let centerPlayerOne = getCenter(topOne, heightOne);
-    
     // moving down
     if (centerPlayerOne < mousePosition && bottomOne <= (window.innerHeight - 20)) {
-        playerOne.style.top = `${topOne + speed}px`;
+        playerOne.style.top = `${topOne + paddleSpeed}px`;
     }
     // moving up
     else if (centerPlayerOne > mousePosition  && topOne >= 20) {
-        playerOne.style.top = `${topOne - speed}px`;
+        playerOne.style.top = `${topOne - paddleSpeed}px`;
     }
-
-    // move player 2
+    return paddlePositionOne;
+}
+function movePaddleRight(playerTwo) {
+    // Moves by arrows
+    let paddlePositionTwo = playerTwo.getBoundingClientRect();
     let topTwo = paddlePositionTwo.top;
     let bottomTwo = paddlePositionTwo.bottom;
-    let heightTwo = paddlePositionTwo.height;
-    let centerPlayerTwo = getCenter(topTwo, heightTwo);
-
     if (downPressed && bottomTwo <= (window.innerHeight - 20)) {
-        playerTwo.style.top = `${topTwo + speed}px`;
+        playerTwo.style.top = `${topTwo + paddleSpeed}px`;
     }
     if (upPressed && topTwo >= 20) {
-        playerTwo.style.top = `${topTwo - speed}px`;
+        playerTwo.style.top = `${topTwo - paddleSpeed}px`;
     }
+    return paddlePositionTwo;
+}
+function movePaddle() {
+    let playerOne = document.querySelector(".paddleLeft");
+    let playerTwo = document.querySelector(".paddleRight");
+    let paddlePositionOne = movePaddleLeft(playerOne);
+    let paddlePositionTwo = movePaddleRight(playerTwo);
     return [paddlePositionOne, paddlePositionTwo];
 }
 
