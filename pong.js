@@ -60,7 +60,6 @@ function checkCollision(ballPos, paddlePosition) {
         if (!whiteSpaceOne) {
             moveLeft = false;
             moveRight = true;
-            console.log("Hit Left Paddle");
         }
     }
 
@@ -69,7 +68,6 @@ function checkCollision(ballPos, paddlePosition) {
         if (!whiteSpaceTwo) {
             moveLeft = true;
             moveRight = false;
-            console.log("Hit Right Paddle");
         }
     }
 }
