@@ -5,6 +5,10 @@ let upPressed = false;
 let isStill = true;
 let ballSpeed = 2;
 let paddleSpeed = 4;
+let scoreLeftEl = document.querySelector(".scoreLeft");
+let scoreRightEl = document.querySelector(".scoreRight");
+let scoreLeft = Number(scoreLeftEl.innerHTML);
+let scoreRight = Number(scoreRightEl.innerHTML);
 
 function getMousePosition(event) {
     mousePosition = event.clientY;
@@ -103,18 +107,24 @@ function moveBall() {
         if (leftBall >= 0) {
             ball.style.left = `${leftBall - ballSpeed}px`
         }
+        // Hit Left wall
         else {
             moveLeft = false;
             moveRight = true;
+            scoreRight++;
+            scoreRightEl.innerHTML = scoreRight;
         }
     }
     else if (moveRight) {
         if (rightBall <= window.innerWidth) {
             ball.style.left = `${leftBall + ballSpeed}px`
         }
+        // Hit right wall
         else {
             moveRight = false;
             moveLeft = true;
+            scoreLeft++;
+            scoreLeftEl.innerHTML = scoreLeft;  
         }
     }
     return ballPos;
