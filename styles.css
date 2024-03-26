@@ -117,10 +117,10 @@ a:hover {
     color: aliceblue;
 }
 
-.scoreLeft {
-
-}
-
-.scoreRight {
-
+#winningBanner {
+    background-color: transparent;
+    height: 20px;
+    width: 200px;
+    padding: 10px;
+    margin: auto;
 }

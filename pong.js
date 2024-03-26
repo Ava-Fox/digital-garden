@@ -1,14 +1,25 @@
 document.addEventListener("mousemove", getMousePosition);
+document.addEventListener("keydown", onKeyDown);
+document.addEventListener("keyup", onKeyUp);
 let mousePosition = 0;
 let downPressed = false;
 let upPressed = false;
 let isStill = true;
 let ballSpeed = 2;
 let paddleSpeed = 4;
+let winningPoints = 1;
 let scoreLeftEl = document.querySelector(".scoreLeft");
 let scoreRightEl = document.querySelector(".scoreRight");
+let winningBanner = document.querySelector("#winningBanner");
 let scoreLeft = Number(scoreLeftEl.innerHTML);
 let scoreRight = Number(scoreRightEl.innerHTML);
+let movingDown = true;
+let movingUp = false;
+let moveLeft  = true;
+let moveRight = false;
+let timeOutID = null;
+let winnerExists = false;
+
 
 function getMousePosition(event) {
     mousePosition = event.clientY;
@@ -32,19 +43,34 @@ function onKeyUp(event) {
     }
 }
 
-document.addEventListener("keydown", onKeyDown);
-document.addEventListener("keyup", onKeyUp);
-let movingDown = true;
-let movingUp = false;
-let moveLeft  = true;
-let moveRight = false;
 function game() {
-    let ballPos = moveBall();
-    let paddlePosition = movePaddle();
-    checkCollision(ballPos, paddlePosition);
-    setTimeout(game, 17);
+    let winner = determineWinner();
+    if (winner) {
+        winnerExists = true;
+        winningBanner.innerHTML = `${winner} wins!`;
+        winningBanner.style.backgroundColor = "pink";
+        winningBanner.style.border = "2px solid black";
+        winningBanner.style.borderRadius= "25%";
+        clearTimeout(timeOutID);
+    }
+    else {
+        let ballPos = moveBall();
+        let paddlePosition = movePaddle();
+        checkCollision(ballPos, paddlePosition);
+        timeOutID = setTimeout(game, 17);
+    }
 }
 game()
+
+function determineWinner() {
+    if (scoreLeft === winningPoints) {
+        return "Player One"
+    } 
+    else if (scoreRight === winningPoints) {
+        return "Player Two"
+    }
+    return false;
+}
 
 function checkCollision(ballPos, paddlePosition) {
     // distance bt rect top to top of screen and distance bt rect bottom to bottom of screen = whitespace/empty
@@ -57,7 +83,7 @@ function checkCollision(ballPos, paddlePosition) {
     let leftBall = ballPos.left;
     let rightBall = ballPos.right;
     let whiteSpaceOne = (ballPos.bottom < paddlePositionOne.top || ballPos.top > paddlePositionOne.bottom)
-    let whiteSpaceTwo = ballPos.bottom < paddlePositionTwo.top || ballPos.top > paddlePositionTwo.bottom
+    let whiteSpaceTwo = (ballPos.bottom < paddlePositionTwo.top || ballPos.top > paddlePositionTwo.bottom)
 
     // Check Player One
     if (leftBall <= leftPaddle) {
@@ -171,5 +197,3 @@ function getCenter (top, height) {
     let center = top + (height / 2);
     return center;
 }
-
-// let paddleLeft = document.querySelector(".paddleLeft");
