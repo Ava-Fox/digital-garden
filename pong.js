@@ -91,6 +91,7 @@ function checkCollision(ballPos, paddlePosition) {
         if (!whiteSpaceOne) {
             moveLeft = false;
             moveRight = true;
+            ballSpeed += 0.1;
         }
     }
 
@@ -99,6 +100,7 @@ function checkCollision(ballPos, paddlePosition) {
         if (!whiteSpaceTwo) {
             moveLeft = true;
             moveRight = false;
+            ballSpeed += 0.1;
         }
     }
 }
@@ -172,6 +174,12 @@ function movePaddleLeft(playerOne) {
     let bottomOne = paddlePositionOne.bottom;
     let heightOne = paddlePositionOne.height;
     let centerPlayerOne = getCenter(topOne, heightOne);
+    
+    // if this is within range, don't move to prevent jitter
+    if (Math.abs(centerPlayerOne - mousePosition) <= paddleSpeed) {
+        return paddlePositionOne;
+    }
+
     // moving down
     if (centerPlayerOne < mousePosition && bottomOne <= (window.innerHeight - 20)) {
         playerOne.style.top = `${topOne + paddleSpeed}px`;
