@@ -18,8 +18,21 @@ let movingUp = false;
 let moveLeft  = true;
 let moveRight = false;
 let timeOutID = null;
-let winnerExists = false;
 
+function game() {
+    let winner = determineWinner();
+    if (winner) {
+        createBanner(winner);
+        clearTimeout(timeOutID);
+    }
+    else {
+        let ballPos = moveBall();
+        let paddlePosition = movePaddle();
+        checkCollision(ballPos, paddlePosition);
+        timeOutID = setTimeout(game, 17);
+    }
+}
+game()
 
 function getMousePosition(event) {
     mousePosition = event.clientY;
@@ -43,24 +56,12 @@ function onKeyUp(event) {
     }
 }
 
-function game() {
-    let winner = determineWinner();
-    if (winner) {
-        winnerExists = true;
-        winningBanner.innerHTML = `${winner} wins!`;
-        winningBanner.style.backgroundColor = "pink";
-        winningBanner.style.border = "2px solid black";
-        winningBanner.style.borderRadius= "25%";
-        clearTimeout(timeOutID);
-    }
-    else {
-        let ballPos = moveBall();
-        let paddlePosition = movePaddle();
-        checkCollision(ballPos, paddlePosition);
-        timeOutID = setTimeout(game, 17);
-    }
+function createBanner(winner) {
+    winningBanner.innerHTML = `<a href="animate.html">${winner}</a> wins!`;
+    winningBanner.style.backgroundColor = "pink";
+    winningBanner.style.border = "2px solid black";
+    winningBanner.style.borderRadius= "25%";
 }
-game()
 
 function determineWinner() {
     if (scoreLeft === winningPoints) {
@@ -155,6 +156,15 @@ function moveBall() {
     }
     return ballPos;
 }
+
+function movePaddle() {
+    let playerOne = document.querySelector(".paddleLeft");
+    let playerTwo = document.querySelector(".paddleRight");
+    let paddlePositionOne = movePaddleLeft(playerOne);
+    let paddlePositionTwo = movePaddleRight(playerTwo);
+    return [paddlePositionOne, paddlePositionTwo];
+}
+
 function movePaddleLeft(playerOne) {
     // moves by mouse
     let paddlePositionOne = playerOne.getBoundingClientRect();
@@ -172,6 +182,7 @@ function movePaddleLeft(playerOne) {
     }
     return paddlePositionOne;
 }
+
 function movePaddleRight(playerTwo) {
     // Moves by arrows
     let paddlePositionTwo = playerTwo.getBoundingClientRect();
@@ -184,13 +195,6 @@ function movePaddleRight(playerTwo) {
         playerTwo.style.top = `${topTwo - paddleSpeed}px`;
     }
     return paddlePositionTwo;
-}
-function movePaddle() {
-    let playerOne = document.querySelector(".paddleLeft");
-    let playerTwo = document.querySelector(".paddleRight");
-    let paddlePositionOne = movePaddleLeft(playerOne);
-    let paddlePositionTwo = movePaddleRight(playerTwo);
-    return [paddlePositionOne, paddlePositionTwo];
 }
 
 function getCenter (top, height) {
