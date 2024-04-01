@@ -18,10 +18,17 @@ let movingUp = false;
 let moveLeft  = true;
 let moveRight = false;
 let timeOutID = null;
+let hasWinner = false;
+var yay = new Audio('sounds/yay.mp3');
+
+yay.addEventListener("mousemove", () => {
+    yay.play();
+ });
 
 function game() {
     let winner = determineWinner();
     if (winner) {
+        yay.play();
         createBanner(winner);
         clearTimeout(timeOutID);
     }
@@ -57,7 +64,7 @@ function onKeyUp(event) {
 }
 
 function createBanner(winner) {
-    winningBanner.innerHTML = `<a href="animate.html">${winner}</a> wins!`;
+    winningBanner.innerHTML = `<a href="sugoi.html">${winner}</a> wins!`;
     winningBanner.style.backgroundColor = "pink";
     winningBanner.style.border = "2px solid black";
     winningBanner.style.borderRadius= "25%";

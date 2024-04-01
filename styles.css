@@ -75,13 +75,19 @@ a:hover {
     height: fit-content;
     padding: 10px;
 }
-#pong {
+
+.game {
     background-image: url("images/coolBkgnd.png")
 }
+
+.breakout {
+    background-position: top;
+}
+
 .follow {
- position: fixed;
- left: 0;
- top: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .paddle {
@@ -123,4 +129,12 @@ a:hover {
     width: 200px;
     padding: 10px;
     margin: auto;
+}
+
+.bPaddle {
+    position: fixed;
+    height: 25px;
+    width: 100px;
+    bottom: 10px;
+    left: auto;
 }
