@@ -138,3 +138,12 @@ a:hover {
     bottom: 10px;
     left: auto;
 }
+
+.brick {
+    height: 100px;
+    width: 200px;
+    position: fixed;
+    background-color: pink;
+    padding: 10px;
+    border: 
+}
