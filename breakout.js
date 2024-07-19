@@ -21,12 +21,7 @@ function initBricks() {
    for (let i = 0; i < brickRow; i++) {
         let newRow = []
         for (let j = 0; j < brickColumn; j++) {
-            if (i == 0 && j == 0) {
-                newRow.push(false);
-            }
-            else {
-                newRow.push(true);
-            } 
+            newRow.push(true);
         }
         bricks.push(newRow);
    }
