@@ -64,7 +64,7 @@ function onKeyUp(event) {
 }
 
 function createBanner(winner) {
-    winningBanner.innerHTML = `<a href="sugoi.html">${winner}</a> wins!`;
+    winningBanner.innerHTML = `<a href="Sugoi.html">${winner}</a> wins!`;
     winningBanner.style.backgroundColor = "pink";
     winningBanner.style.border = "2px solid black";
     winningBanner.style.borderRadius= "25%";

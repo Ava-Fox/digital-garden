@@ -120,7 +120,7 @@ a:hover {
 }
 
 .score {
-    color: aliceblue;
+    color: rgb(19, 135, 235);
 }
 
 #winningBanner {
@@ -145,5 +145,43 @@ a:hover {
     position: fixed;
     background-color: pink;
     padding: 10px;
-    border: 
+    border: 2px solid black;
+}
+
+.flex-container {
+    display: flex;
+    padding: 10px;
+}
+
+.inside-flex {
+    display: flex;
+    flex-direction: column;
+}
+#leftdiv {
+    background-color: antiquewhite;
+    margin-right: 40px;
+}
+
+.middlesquares {
+    height: 200px;
+    width: 200px;
+}
+.outsiderect {
+    height: 400px;
+    width: 200px;
+    border: 2px solid black;
+    padding: 20px;
+}
+#righttop {
+    background-color: pink;  
+}
+
+#rightbottom {
+    background-color: plum;
+    margin-top: 10px;
+}
+
+#rightdiv {
+    background-color: beige;
+    margin-left: 20px;
 }
